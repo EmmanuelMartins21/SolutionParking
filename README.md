@@ -1,5 +1,5 @@
 # SolutionParking 
-Este projeto é uma solucçaõ economica e pratica para estacionamento rotativo. Com o baixo custo de manutenção, o SolutionParking promete praticidade e organização de seus estabelecimentos. Mias informações em breve...
+Este projeto é uma solução economica e pratica para estacionamento rotativo. Com o baixo custo de manutenção, o SolutionParking promete praticidade e organização de seus estabelecimentos. Mias informações em breve...
 ## Progresso
  - [x] Iniciar o Projeto
  - [x] Implementar as novas telas.

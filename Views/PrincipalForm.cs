@@ -32,7 +32,8 @@ namespace SolutionParking.Views
 
         private void VeiculosEstacionadosButton_Click(object sender, EventArgs e)
         {
-
+            VeiculosEstacionadosForm form = new VeiculosEstacionadosForm();
+            form.Show();
         }
     }
 }

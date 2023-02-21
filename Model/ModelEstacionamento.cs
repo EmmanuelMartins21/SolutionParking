@@ -16,11 +16,13 @@ namespace SolutionParking.Model
         [NotNull]
         public String TipoVeiculo { get; set; }
         [NotNull]
-        public DateTimePicker Dth_Entrada { get; set; }
-        [NotNull]
-        public DateTimePicker Dth_Saida { get; set; }
+        public DateTime Dth_Entrada { get; set; }
+        
+        public DateTime  Dth_Saida { get; set; }
         [NotNull]
         public Boolean Enable { get; set; }
+        [NotNull]
+        public String Vaga { get; set; }
 
 
         public ModelEstacionamento()

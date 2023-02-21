@@ -29,30 +29,31 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntradaVeiculoForm));
-            this.EntradaVeiculoButton1 = new System.Windows.Forms.Button();
+            this.EntradaVeiculoButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.LoginTxtVagasLabel = new System.Windows.Forms.Label();
             this.PlacaVeiculoTextBox = new System.Windows.Forms.TextBox();
             this.TituloLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.TipoVeiculoComboBox = new System.Windows.Forms.ComboBox();
             this.EntradaDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.VagaLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.VagaTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.CancelarBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // EntradaVeiculoButton1
+            // EntradaVeiculoButton
             // 
-            this.EntradaVeiculoButton1.BackColor = System.Drawing.Color.SeaGreen;
-            this.EntradaVeiculoButton1.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.EntradaVeiculoButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.EntradaVeiculoButton1.Location = new System.Drawing.Point(411, 327);
-            this.EntradaVeiculoButton1.Name = "EntradaVeiculoButton1";
-            this.EntradaVeiculoButton1.Size = new System.Drawing.Size(154, 35);
-            this.EntradaVeiculoButton1.TabIndex = 16;
-            this.EntradaVeiculoButton1.Text = "Salvar";
-            this.EntradaVeiculoButton1.UseVisualStyleBackColor = false;
+            this.EntradaVeiculoButton.BackColor = System.Drawing.Color.SeaGreen;
+            this.EntradaVeiculoButton.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.EntradaVeiculoButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.EntradaVeiculoButton.Location = new System.Drawing.Point(411, 327);
+            this.EntradaVeiculoButton.Name = "EntradaVeiculoButton";
+            this.EntradaVeiculoButton.Size = new System.Drawing.Size(154, 35);
+            this.EntradaVeiculoButton.TabIndex = 16;
+            this.EntradaVeiculoButton.Text = "Salvar";
+            this.EntradaVeiculoButton.UseVisualStyleBackColor = false;
+            this.EntradaVeiculoButton.Click += new System.EventHandler(this.EntradaVeiculoButton_Click);
             // 
             // label1
             // 
@@ -93,17 +94,17 @@
             this.TituloLabel.Text = "Solution Parking";
             this.TituloLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // TipoVeiculoComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.TipoVeiculoComboBox.FormattingEnabled = true;
+            this.TipoVeiculoComboBox.Items.AddRange(new object[] {
             "Carro",
             "Moto",
             "Bicicleta "});
-            this.comboBox1.Location = new System.Drawing.Point(354, 119);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 18;
+            this.TipoVeiculoComboBox.Location = new System.Drawing.Point(354, 119);
+            this.TipoVeiculoComboBox.Name = "TipoVeiculoComboBox";
+            this.TipoVeiculoComboBox.Size = new System.Drawing.Size(121, 23);
+            this.TipoVeiculoComboBox.TabIndex = 18;
             // 
             // EntradaDateTimePicker
             // 
@@ -122,12 +123,12 @@
             this.VagaLabel.TabIndex = 21;
             this.VagaLabel.Text = "Vaga";
             // 
-            // textBox1
+            // VagaTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(588, 119);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 20;
+            this.VagaTextBox.Location = new System.Drawing.Point(588, 119);
+            this.VagaTextBox.Name = "VagaTextBox";
+            this.VagaTextBox.Size = new System.Drawing.Size(100, 23);
+            this.VagaTextBox.TabIndex = 20;
             // 
             // label2
             // 
@@ -160,10 +161,10 @@
             this.Controls.Add(this.CancelarBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.VagaLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.VagaTextBox);
             this.Controls.Add(this.EntradaDateTimePicker);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.EntradaVeiculoButton1);
+            this.Controls.Add(this.TipoVeiculoComboBox);
+            this.Controls.Add(this.EntradaVeiculoButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginTxtVagasLabel);
             this.Controls.Add(this.PlacaVeiculoTextBox);
@@ -171,6 +172,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EntradaVeiculoForm";
             this.Text = "EntradaVeiculoForm";
+            this.Load += new System.EventHandler(this.EntradaVeiculoForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,15 +180,15 @@
 
         #endregion
 
-        private Button EntradaVeiculoButton1;
+        private Button EntradaVeiculoButton;
         private Label label1;
         private Label LoginTxtVagasLabel;
         private TextBox PlacaVeiculoTextBox;
         private Label TituloLabel;
-        private ComboBox comboBox1;
+        private ComboBox TipoVeiculoComboBox;
         private DateTimePicker EntradaDateTimePicker;
         private Label VagaLabel;
-        private TextBox textBox1;
+        private TextBox VagaTextBox;
         private Label label2;
         private Button CancelarBtn;
     }

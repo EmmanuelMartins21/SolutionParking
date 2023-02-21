@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SolutionParking.Views;
-
+using SolutionParking.Model;
+using SolutionParking.Service;
 namespace SolutionParking.Views
 {
     public partial class EntradaVeiculoForm : Form
@@ -17,6 +18,15 @@ namespace SolutionParking.Views
         {
             InitializeComponent();
         }
+        public EntradaVeiculoForm( ModelEstacionamento veiculo)
+        {
+            InitializeComponent();
+            PlacaVeiculoTextBox.Text = veiculo.Placa;
+            TipoVeiculoComboBox.Text = veiculo.TipoVeiculo;
+            VagaTextBox.Text = veiculo.Vaga;
+            veiculo.Enable = true;
+        }
+
 
         private void CancelarBtn_Click(object sender, EventArgs e)
         {
@@ -25,6 +35,46 @@ namespace SolutionParking.Views
             {
                 Close();
             }
+        }
+
+        private void EntradaVeiculoForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EntradaVeiculoButton_Click(object sender, EventArgs e)
+        {
+            if (!(string.IsNullOrEmpty(PlacaVeiculoTextBox.Text) &&
+                !(string.IsNullOrEmpty(TipoVeiculoComboBox.Text)) &&
+                !(string.IsNullOrEmpty(VagaTextBox.Text))))
+            {
+                try
+                {
+                    ModelEstacionamento veiculo = new ModelEstacionamento();
+                    veiculo.Placa = PlacaVeiculoTextBox.Text;
+                    veiculo.TipoVeiculo = TipoVeiculoComboBox.Text;
+                    veiculo.Vaga = VagaTextBox.Text;
+                    veiculo.Dth_Entrada = EntradaDateTimePicker.Value;
+                    veiculo.Enable = true;
+
+                    ServicesDbEstacionamento dbEstacionamento = new ServicesDbEstacionamento(Program.DbPath);
+
+                    dbEstacionamento.InserirVeiculo(veiculo);
+
+                    EntradaVeiculoForm form = new EntradaVeiculoForm();
+                    form.Show();
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show("Não foi cadastrar veiculo" + ex);
+                }
+
+            }
+            else
+            {
+
+            }
+            
         }
     }
 }

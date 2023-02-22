@@ -13,7 +13,7 @@ namespace SolutionParking.Service
         SQLiteConnection conn;
         public string StatusMessage { get; set; }
         /// <summary>
-        /// Construtor que define o banco e cria a tabela notas baseada no Models
+        /// Construtor que define o banco e cria a tabela Estacionamento baseada no Models
         /// </summary>
         /// <param name="dbPath"></param>
         public  ServicesDbEstacionamento(string dbPath)
@@ -23,7 +23,7 @@ namespace SolutionParking.Service
             conn.CreateTable<ModelEstacionamento>();
         }
 
-        public void InserirVeiculo(ModelEstacionamento estacionamento)
+        public void InserirVeiculo(ModelEstacionamento estacionamento, string vaga)
         {
             try
             {
@@ -32,15 +32,29 @@ namespace SolutionParking.Service
                     (!String.IsNullOrEmpty(estacionamento.Vaga)) &&
                     (!String.IsNullOrEmpty(estacionamento.Dth_Entrada.ToString())))
                 {
-                    int result = conn.Insert(estacionamento);
-                    if (result != 0)
+                    var resp = from reg in conn.Table<ModelEstacionamento>()
+                               where reg.Vaga.Contains(vaga) && reg.Enable == true
+                               select reg;
+                    int validaVaga =  resp.Count();
+
+                    if(validaVaga >= 1)
                     {
-                        StatusMessage = String.Format("{0} registro(s) adicionado(s)", result);
+                        StatusMessage = String.Format("Essa vaga não pode ser preenchida");
+                        MessageBox.Show($"Não é cadastrar veiculo para esta vaga");
+                        
                     }
                     else
                     {
-                        StatusMessage = String.Format("0 registro(s) adicionado(s)");
-                    }
+                        int result = conn.Insert(estacionamento);
+                        if (result != 0)
+                        {
+                            StatusMessage = String.Format("{0} registro(s) adicionado(s)", result);
+                        }
+                        else
+                        {
+                            StatusMessage = String.Format("0 registro(s) adicionado(s)");
+                        }
+                    }                    
                 }
                 else
                 {
@@ -60,7 +74,10 @@ namespace SolutionParking.Service
                 if (!String.IsNullOrEmpty(placa))
                 {
                     int result = conn.Table<ModelEstacionamento>().Delete(r => r.Placa == placa);
-                    StatusMessage = $"Remoção realizada com Sucesso";
+                    if (result != 0)
+                    {
+                        MessageBox.Show($"Veiculo retirado com sucesso");
+                    }
                 }
                 else
                 {
@@ -85,25 +102,7 @@ namespace SolutionParking.Service
             }
             return lista;
         }
-        public void Atualizar(ModelEstacionamento estacionamento)
-        {
-            try
-            {
-                if (!String.IsNullOrEmpty(estacionamento.Placa))
-                {
-                    int result = conn.Update(estacionamento.Enable = false);
-                    StatusMessage = $"Registro alterado com Sucesso";
-                }
-                else
-                {
-                    this.StatusMessage = String.Format("0 registro(s) atualizado(s): Informe o Id da nota");
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(String.Format("0 registro(s) atualizado(s) {0}", e.Message));
-            }
-        }
+      
 
     }
 

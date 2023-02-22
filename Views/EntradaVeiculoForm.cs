@@ -54,15 +54,19 @@ namespace SolutionParking.Views
                     veiculo.Placa = PlacaVeiculoTextBox.Text;
                     veiculo.TipoVeiculo = TipoVeiculoComboBox.Text;
                     veiculo.Vaga = VagaTextBox.Text;
-                    veiculo.Dth_Entrada = EntradaDateTimePicker.Value;
+                    veiculo.Dth_Entrada = DateTime.Now;
                     veiculo.Enable = true;
 
                     ServicesDbEstacionamento dbEstacionamento = new ServicesDbEstacionamento(Program.DbPath);
 
-                    dbEstacionamento.InserirVeiculo(veiculo);
+                    dbEstacionamento.InserirVeiculo(veiculo, veiculo.Vaga);
 
-                    EntradaVeiculoForm form = new EntradaVeiculoForm();
-                    form.Show();
+                    #region LimpaTela
+                    PlacaVeiculoTextBox.Text = "";
+                    TipoVeiculoComboBox.Text = "";
+                    VagaTextBox.Text = ""; 
+                    #endregion
+
                 }
                 catch (Exception ex) 
                 {
@@ -72,7 +76,7 @@ namespace SolutionParking.Views
             }
             else
             {
-
+                MessageBox.Show($"Não é cadastrar veiculo com informações pendendes. Gentileza Informar todos os campos");
             }
             
         }

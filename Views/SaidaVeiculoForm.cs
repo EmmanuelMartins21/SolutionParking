@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using SolutionParking.Service;
+using SolutionParking.Model;
 namespace SolutionParking.Views
 {
     public partial class SaidaVeiculoForm : Form
@@ -36,6 +37,19 @@ namespace SolutionParking.Views
             if (retorno == DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void SalvarSaidaVeiculoButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(PlacaVeiculoTextBox.Text))
+            {
+                ModelEstacionamento veiculo = new ModelEstacionamento();
+                veiculo.Placa = PlacaVeiculoTextBox.Text;
+                veiculo.Enable = false; 
+                ServicesDbEstacionamento dbEstacionamento = new ServicesDbEstacionamento(Program.DbPath);
+
+                dbEstacionamento.RemoverVeiculo(veiculo.Placa);
             }
         }
     }

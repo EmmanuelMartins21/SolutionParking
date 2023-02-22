@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaidaVeiculoForm));
             this.CancelarBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.EntradaDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.EntradaVeiculoButton1 = new System.Windows.Forms.Button();
+            this.SalvarSaidaVeiculoButton = new System.Windows.Forms.Button();
             this.LoginTxtVagasLabel = new System.Windows.Forms.Label();
             this.PlacaVeiculoTextBox = new System.Windows.Forms.TextBox();
             this.TituloLabel = new System.Windows.Forms.Label();
@@ -72,17 +73,18 @@
             this.EntradaDateTimePicker.Size = new System.Drawing.Size(200, 23);
             this.EntradaDateTimePicker.TabIndex = 30;
             // 
-            // EntradaVeiculoButton1
+            // SalvarSaidaVeiculoButton
             // 
-            this.EntradaVeiculoButton1.BackColor = System.Drawing.Color.SeaGreen;
-            this.EntradaVeiculoButton1.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.EntradaVeiculoButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.EntradaVeiculoButton1.Location = new System.Drawing.Point(411, 326);
-            this.EntradaVeiculoButton1.Name = "EntradaVeiculoButton1";
-            this.EntradaVeiculoButton1.Size = new System.Drawing.Size(154, 35);
-            this.EntradaVeiculoButton1.TabIndex = 28;
-            this.EntradaVeiculoButton1.Text = "Salvar";
-            this.EntradaVeiculoButton1.UseVisualStyleBackColor = false;
+            this.SalvarSaidaVeiculoButton.BackColor = System.Drawing.Color.SeaGreen;
+            this.SalvarSaidaVeiculoButton.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SalvarSaidaVeiculoButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.SalvarSaidaVeiculoButton.Location = new System.Drawing.Point(411, 326);
+            this.SalvarSaidaVeiculoButton.Name = "SalvarSaidaVeiculoButton";
+            this.SalvarSaidaVeiculoButton.Size = new System.Drawing.Size(154, 35);
+            this.SalvarSaidaVeiculoButton.TabIndex = 28;
+            this.SalvarSaidaVeiculoButton.Text = "Salvar";
+            this.SalvarSaidaVeiculoButton.UseVisualStyleBackColor = false;
+            this.SalvarSaidaVeiculoButton.Click += new System.EventHandler(this.SalvarSaidaVeiculoButton_Click);
             // 
             // LoginTxtVagasLabel
             // 
@@ -177,10 +179,11 @@
             this.Controls.Add(this.CancelarBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.EntradaDateTimePicker);
-            this.Controls.Add(this.EntradaVeiculoButton1);
+            this.Controls.Add(this.SalvarSaidaVeiculoButton);
             this.Controls.Add(this.LoginTxtVagasLabel);
             this.Controls.Add(this.PlacaVeiculoTextBox);
             this.Controls.Add(this.TituloLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SaidaVeiculoForm";
             this.Text = "SaidaVeiculoForm";
             this.ResumeLayout(false);
@@ -193,7 +196,7 @@
         private Button CancelarBtn;
         private Label label2;
         private DateTimePicker EntradaDateTimePicker;
-        private Button EntradaVeiculoButton1;
+        private Button SalvarSaidaVeiculoButton;
         private Label LoginTxtVagasLabel;
         private TextBox PlacaVeiculoTextBox;
         private Label TituloLabel;
